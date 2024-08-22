@@ -1,0 +1,63 @@
+<mvc:View xmlns:core="sap.ui.core" controllerName="fiori.employees.controller.MainView"
+    xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
+    xmlns="sap.m">
+    <Page id="page" title="{i18n>title}">
+        <content>
+            <HBox id="hbEmployee">
+                <Label id="labelEmployee" labelFor="inputEmployee" text="{i18n>lblEmployee}" class="sapUiSmallMargin" />
+                <Input id="inputEmployee" value="{/EmployeeId}" maxLength="10" width="200px" class="sapUiSmallMarginEnd" 
+                         />
+                <Label id="labelCountry" labelFor="slCountry" text="{i18n>lblCountry}" class="sapUiSmallMargin" visible="true" />
+                <Select id="slCountry" selectedKey="{/CountryKey}" items="{/ListCountry}" forceSelection="false" visible="true">
+                    <items>
+                        <core:Item key="{Key}" text="{Text}"/>
+                        <!--<core:Item id="US" key="US" text="{i18n>countryUS}"/>
+                        <core:Item id="UK" key="UK" text="{i18n>countryUK}"/>
+                        <core:Item id="ES" key="ES" text="{i18n>countryES}"/>
+                        <core:Item id="MX" key="MX" text="{i18n>CountryMX}"/> -->
+                    </items>
+                </Select>
+                <Button id="btnFilter" text="{i18n>btnFilter}" icon="sap-icon://search" press="onFilter" class="sapUiSmallMarginEnd"/>
+                <Button id="btnclear" text="{i18n>btnClear}" icon="sap-icon://clear-filter" press="onClearFilter" class="sapUiSmallMarginEnd"/>
+            </HBox>
+            <HBox >
+                <Panel >
+                    <Table id="tableEmployee" items="{jsonEmployees>/Employees}">
+                        <columns>
+                            <Column >
+                                <header>
+                                    <Label text="{i18n>employeeID}"/>
+                                </header>
+                            </Column>
+                            <Column >
+                                <header>
+                                    <Label text="{i18n>employeeName}"/>
+                                </header>
+                            </Column>
+                            <Column >
+                                <header>
+                                    <Label text="{i18n>employeeCountry}"/>
+                                </header>
+                            </Column>
+                            <Column >
+                                <header>
+                                    <Label text="{i18n>employeeCity}"/>
+                                </header>
+                            </Column>
+                        </columns> 
+                        <items>
+                            <ColumnListItem type="Active" press="showPostalCode" >
+                                <cells>
+                                    <Label text="{jsonEmployees>EmployeeID}"/>
+                                    <Label text="{jsonEmployees>LastName}, {jsonEmployees>FirstName}"/>
+                                    <Label text="{jsonEmployees>Country}"/>
+                                    <Label text="{jsonEmployees>City}"/>
+                                </cells>
+                            </ColumnListItem>
+                        </items>
+                    </Table>
+                </Panel>
+            </HBox>
+        </content>
+    </Page>
+</mvc:View>
